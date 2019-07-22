@@ -1,0 +1,78 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: post-svc
+  labels:
+    app: post-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: post-svc
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: http
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: post-svc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: post-svc
+        version: v1
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: post-svc
+          image: phx.ocir.io/toddrsharp/cloud-native-microservice/post-svc:latest
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: dbUser
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: dbPassword
+            - name: CONNECT_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: connectString
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: accessToken
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: secretKey
+            - name: REGION
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: region
+            - name: STORAGE_TENANCY
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: storageTenancy
+            - name: BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: post-svc-secrets
+                  key: bucket
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred
+---

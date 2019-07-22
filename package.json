@@ -1,0 +1,30 @@
+{
+  "name": "codes.recursive",
+  "version": "0.0.1",
+  "description": "A demo of using SODA to persist documents in ATP",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "soda",
+    "oracle",
+    "oracledb"
+  ],
+  "author": "todd.sharp@oracle.com",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^15.1.0",
+    "aws-sdk": "^2.493.0",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-async-handler": "^1.1.4",
+    "express-fileupload": "^1.1.5",
+    "morgan": "~1.9.0",
+    "oracledb": "^3.1.2",
+    "uuid": "^3.3.2"
+  }
+}
