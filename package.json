@@ -15,7 +15,7 @@
   "author": "todd.sharp@oracle.com",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^15.1.0",
+    "@hapi/joi": "^15.1.1",
     "aws-sdk": "^2.493.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
